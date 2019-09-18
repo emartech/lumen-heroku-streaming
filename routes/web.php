@@ -27,10 +27,7 @@ $router->get('/big-without-headers', function () use ($router) {
         $ticks = 15;
         echo '[';
         for ($index = 0; $index < $ticks; $index++) {
-            ob_start();
-            phpinfo();
-            $phpinfo = ob_get_flush();
-            echo json_encode(['name' => 'bla', 'index' => $index, 'phpinfo' => $phpinfo]);
+            echo json_encode(['name' => 'bla', 'index' => $index, 'a' => array_fill(1, 5000, rand())]);
             if ($index < $ticks - 1) {
                 echo ",\n";
             }
@@ -46,13 +43,10 @@ $router->get('/big-without-headers', function () use ($router) {
 });
 $router->get('/big-with-headers', function () use ($router) {
     $response = new StreamedResponse(function () {
-        $ticks = 15;
+        $ticks = 45;
         echo '[';
         for ($index = 0; $index < $ticks; $index++) {
-            ob_start();
-            phpinfo();
-            $phpinfo = ob_get_flush();
-            echo json_encode(['name' => 'bla', 'index' => $index, 'phpinfo' => $phpinfo]);
+            echo json_encode(['name' => 'bla', 'index' => $index, 'a' => array_fill(1, 5000, rand())]);
             if ($index < $ticks - 1) {
                 echo ",\n";
             }
