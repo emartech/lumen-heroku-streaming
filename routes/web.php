@@ -4,7 +4,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 $router->get('/small', function () use ($router) {
     $response = new StreamedResponse(function () {
-        $ticks = 15;
+        $ticks = 45;
         echo '[';
         for ($index = 0; $index < $ticks; $index++) {
             echo json_encode(['name' => 'bla', 'index' => $index]);
@@ -24,7 +24,7 @@ $router->get('/small', function () use ($router) {
 
 $router->get('/big-without-headers', function () use ($router) {
     $response = new StreamedResponse(function () {
-        $ticks = 15;
+        $ticks = 45;
         echo '[';
         for ($index = 0; $index < $ticks; $index++) {
             echo json_encode(['name' => 'bla', 'index' => $index, 'a' => array_fill(1, 5000, rand())]);
